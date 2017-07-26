@@ -30,6 +30,7 @@ void CNodepadDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CNodepadDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_WM_DROPFILES()
 END_MESSAGE_MAP()
 
 
@@ -85,3 +86,27 @@ HCURSOR CNodepadDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+
+
+void CNodepadDlg::OnDropFiles(HDROP hDropInfo)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	TCHAR sFile[256];
+	DragQueryFile(hDropInfo, 0, sFile, _countof(sFile));
+	CFile file;
+	if (!file.Open(sFile, CFile::modeRead))
+	{
+		AfxMessageBox(TEXT('加载文件失败！'));
+	}
+
+	CString text[256];
+	
+	while (file.Read(text,sizeof(text)) == sizeof(text))
+	{
+		SetDlgItemText(IDC_EDIT, (LPCTSTR)text);
+	}
+
+	CDialogEx::OnDropFiles(hDropInfo);
+}
