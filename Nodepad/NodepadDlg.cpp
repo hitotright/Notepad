@@ -31,6 +31,7 @@ BEGIN_MESSAGE_MAP(CNodepadDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_WM_DROPFILES()
+	ON_COMMAND(IDOK, &CNodepadDlg::OnIdok)
 END_MESSAGE_MAP()
 
 
@@ -101,12 +102,22 @@ void CNodepadDlg::OnDropFiles(HDROP hDropInfo)
 		AfxMessageBox(TEXT('加载文件失败！'));
 	}
 
-	CString text[256];
+	CHAR utf8[256];
+	CString text,unicode;
 	
-	while (file.Read(text,sizeof(text)) == sizeof(text))
+	while (file.Read(utf8,sizeof(utf8)) == sizeof(utf8))
 	{
-		SetDlgItemText(IDC_EDIT, (LPCTSTR)text);
+		
+		GetDlgItemText(IDC_EDIT, text);
+		text+=utf8;
+		SetDlgItemText(IDC_EDIT,text);
 	}
 
 	CDialogEx::OnDropFiles(hDropInfo);
+}
+
+
+void CNodepadDlg::OnIdok()
+{
+	// TODO: 在此添加命令处理程序代码
 }

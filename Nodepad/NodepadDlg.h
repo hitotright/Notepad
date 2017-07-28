@@ -33,4 +33,5 @@ protected:
 public:
 	afx_msg void OnEnChangeEdit();
 	afx_msg void OnDropFiles(HDROP hDropInfo);
+	afx_msg void OnIdok();
 };
