@@ -5,8 +5,8 @@
 #define IDD_NODEPAD_DIALOG              102
 #define IDR_MAINFRAME                   128
 #define IDR_MENU                        130
-#define IDC_EDIT1                       1000
-#define IDC_EDIT                        1000
+#define IDR_ACCELERATOR1                131
+#define IDC_TEXT                        1000
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -31,13 +31,20 @@
 #define ID_32792                        32792
 #define ID_32793                        32793
 #define ID_App                          32794
+#define ID_Edit                         32795
+#define ID_EDIT_U                       32796
+#define ID_E                            32797
+#define ID_EDIT_FIND_NEXT               32798
+#define ID_EDIT_GO                      32799
+#define ID_EDIT_DATE                    32800
+#define ID_ACCELERATOR32801             32801
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        131
-#define _APS_NEXT_COMMAND_VALUE         32795
+#define _APS_NEXT_RESOURCE_VALUE        132
+#define _APS_NEXT_COMMAND_VALUE         32803
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

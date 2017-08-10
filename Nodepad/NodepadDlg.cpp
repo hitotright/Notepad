@@ -32,6 +32,20 @@ BEGIN_MESSAGE_MAP(CNodepadDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_WM_DROPFILES()
 	ON_COMMAND(IDOK, &CNodepadDlg::OnIdok)
+	ON_WM_SIZE()
+	ON_WM_CLOSE()
+	ON_COMMAND(IDCANCEL, &CNodepadDlg::OnIdcancel)
+	ON_COMMAND(ID_EDIT_CLEAR, &CNodepadDlg::OnEditClear)
+	ON_COMMAND(ID_EDIT_COPY, &CNodepadDlg::OnEditCopy)
+	ON_COMMAND(ID_EDIT_CUT, &CNodepadDlg::OnEditCut)
+	ON_COMMAND(ID_EDIT_FIND, &CNodepadDlg::OnEditFind)
+	ON_COMMAND(ID_EDIT_DATE, &CNodepadDlg::OnEditDate)
+	ON_COMMAND(ID_EDIT_FIND_NEXT, &CNodepadDlg::OnEditFindNext)
+	ON_COMMAND(ID_EDIT_GO, &CNodepadDlg::OnEditGo)
+	ON_COMMAND(ID_EDIT_PASTE, &CNodepadDlg::OnEditPaste)
+	ON_COMMAND(ID_EDIT_UNDO, &CNodepadDlg::OnEditUndo)
+	ON_COMMAND(ID_EDIT_SELECT_ALL, &CNodepadDlg::OnEditSelectAll)
+	ON_COMMAND(ID_EDIT_REPLACE, &CNodepadDlg::OnEditReplace)
 END_MESSAGE_MAP()
 
 
@@ -107,17 +121,114 @@ void CNodepadDlg::OnDropFiles(HDROP hDropInfo)
 	
 	while (file.Read(utf8,sizeof(utf8)) == sizeof(utf8))
 	{
-		
-		GetDlgItemText(IDC_EDIT, text);
 		text+=utf8;
-		SetDlgItemText(IDC_EDIT,text);
 	}
-
+	SetDlgItemText(IDC_TEXT, text);
 	CDialogEx::OnDropFiles(hDropInfo);
 }
 
 
 void CNodepadDlg::OnIdok()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CNodepadDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CDialogEx::OnSize(nType, cx, cy);
+
+	CWnd* p = GetDlgItem(IDC_TEXT);
+	CRect rect;
+	if (p)
+	{
+		GetClientRect(rect);
+		p->MoveWindow(rect);
+	}
+}
+
+
+void CNodepadDlg::OnClose()
+{
+	
+	EndDialog(IDCANCEL);
+	//CDialogEx::OnClose();
+}
+
+
+void CNodepadDlg::OnIdcancel()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CNodepadDlg::OnEditClear()
+{
+	CEdit* pEdit = (CEdit*)GetDlgItem(IDC_TEXT);
+	pEdit->Clear();
+}
+
+
+void CNodepadDlg::OnEditCopy()
+{
+	CEdit* pEdit = (CEdit*)GetDlgItem(IDC_TEXT);
+	pEdit->Copy();
+}
+
+
+void CNodepadDlg::OnEditCut()
+{
+	CEdit* pEdit = (CEdit*)GetDlgItem(IDC_TEXT);
+	pEdit->Cut();
+}
+
+
+void CNodepadDlg::OnEditFind()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CNodepadDlg::OnEditDate()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CNodepadDlg::OnEditFindNext()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CNodepadDlg::OnEditGo()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CNodepadDlg::OnEditPaste()
+{
+	CEdit* pEdit = (CEdit*)GetDlgItem(IDC_TEXT);
+	pEdit->Paste();
+}
+
+
+void CNodepadDlg::OnEditUndo()
+{
+	CEdit* pEdit = (CEdit*)GetDlgItem(IDC_TEXT);
+	pEdit->Undo();
+}
+
+
+void CNodepadDlg::OnEditSelectAll()
+{
+	CEdit* pEdit = (CEdit*)GetDlgItem(IDC_TEXT);
+	pEdit->SetSel(0,-1);
+}
+
+
+void CNodepadDlg::OnEditReplace()
 {
 	// TODO: 在此添加命令处理程序代码
 }
